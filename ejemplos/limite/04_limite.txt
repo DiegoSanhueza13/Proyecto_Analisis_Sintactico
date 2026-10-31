@@ -1,0 +1,2 @@
+WHEN a < 1 THEN ACTIVAR b;
+WHEN a < 1 ACTIVAR b;

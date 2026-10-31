@@ -17,8 +17,8 @@ def main(argv=None) -> int:
     cli.add_argument('--tokens', action='store_true', help='mostrar también los tokens')
     args = cli.parse_args(argv)
     try:
-        texto = args.archivo.read_text(encoding='utf-8')
-    except OSError as e:
+        texto = args.archivo.read_text(encoding='utf-8-sig')
+    except (OSError, UnicodeError) as e:
         print(f'No se pudo leer el archivo: {e}', file=sys.stderr)
         return 1
     try:
@@ -33,10 +33,17 @@ def main(argv=None) -> int:
     except ErrorSintactico as e:
         print(f'Error sintáctico [{e.linea}:{e.columna}]: {e.mensaje}.', file=sys.stderr)
         return 1
+    except RecursionError:
+        print('Error: demasiados paréntesis o negaciones anidadas para el límite de Python.', file=sys.stderr)
+        return 1
     print('Programa válido.')
     print(a_texto(arbol))
     return 0
  
  
 if __name__ == '__main__':
+    # Conservar el árbol Unicode también al redirigir la salida en Windows.
+    for flujo in (sys.stdout, sys.stderr):
+        if hasattr(flujo, 'reconfigure'):
+            flujo.reconfigure(encoding='utf-8')
     raise SystemExit(main())

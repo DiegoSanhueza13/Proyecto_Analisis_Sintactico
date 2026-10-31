@@ -1,0 +1,1 @@
+WHEN a == 1 OR b == 2 AND c == 3 THEN ACTIVAR bomba;

@@ -8,12 +8,15 @@ from .contratos import ErrorSintactico, Token
 
 class Parser:
     def __init__(self, tokens: list[Token]):
-        if not tokens or tokens[-1].tipo != '$':
-            raise ValueError("La lista de tokens debe terminar con un token de fin '$'.")
-        self.tokens = tokens
+        if (not isinstance(tokens, list) or not tokens
+                or not all(isinstance(t, Token) for t in tokens)
+                or tokens[-1].tipo != '$' or tokens[-1].lexema != ''
+                or sum(t.tipo == '$' for t in tokens) != 1):
+            raise ValueError("Se requiere una lista de Token con un único fin '$', de lexema vacío, al final.")
+        self.tokens = list(tokens)
         self.pos = 0
-    #               utilidase
-    def actual(self) -> str:
+    # Utilidades
+    def actual(self) -> Token:
         return self.tokens[self.pos]
 
     def tipo(self) -> str:
@@ -39,13 +42,13 @@ class Parser:
         self.consumir('$') # si sobra algo, se informa aquí
         return arbol
     # no terminales
-    def programa(self) -> Nodo:     # programa → Regla Rest
+    def programa(self) -> Nodo:     # Programa → Regla Resto
 
         reglas = [self.regla()]
         reglas += self.resto()
         return Nodo('Programa', reglas)
 
-    def resto(self) -> list[Nodo]:    # resto → Regla Rest | ε
+    def resto(self) -> list[Nodo]:    # Resto → Regla Resto | ε
 
         reglas = []
         while self.tipo() == 'WHEN':
@@ -66,10 +69,10 @@ class Parser:
 
     def cola_or(self, izq: Nodo) -> Nodo:  # ColaOr → OR Termino ColaOr | ε
 
-        if self.tipo() == 'OR':
+        while self.tipo() == 'OR':
             self.consumir('OR')
             der = self.termino()
-            return self.cola_or(Nodo('OR', [izq, der]))
+            izq = Nodo('OR', [izq, der])
         return izq # # ε: token en {THEN, )}
 
     def termino(self) -> Nodo:      # Termino → Factor ColaAnd
@@ -78,10 +81,10 @@ class Parser:
 
     def cola_and(self, izq: Nodo) -> Nodo:  # ColaAnd → AND Factor ColaAnd | ε
         
-        if self.tipo() == 'AND':
+        while self.tipo() == 'AND':
             self.consumir('AND')
             der = self.factor()
-            return self.cola_and(Nodo('AND', [izq, der]))
+            izq = Nodo('AND', [izq, der])
         return izq #ε: token en {OR, THEN, )}
 
     def factor(self) -> Nodo:       # Factor → NOT Factor | ( Expr ) | Comparacion
@@ -112,7 +115,7 @@ class Parser:
             return Nodo(self.consumir(t).lexema)
         self.error('un valor (NUM, TRUE o FALSE)')
 
-    def accion(self) -> Nodo:       # Accion → ACTIVAR ID | DESACTIVAR ID | REGAR POR NUM MIN
+    def accion(self) -> Nodo:       # Accion → ACTIVAR ID | DESACTIVAR ID | REGAR ID POR NUM MIN
         t = self.tipo()
         if t in ('ACTIVAR', 'DESACTIVAR'):
             verbo = self.consumir(t)
@@ -127,7 +130,7 @@ class Parser:
             return Nodo(f'REGAR {destino.lexema} ({duracion.lexema} MIN)')
         self.error('una acción (ACTIVAR, DESACTIVAR o REGAR)')
 
-    def mas_acciones(self) -> list[Nodo]:  # MasAcciones → Accion MasAcciones | ε
+    def mas_acciones(self) -> list[Nodo]:  # MasAcciones → Y Accion MasAcciones | ε
         acciones = []
         while self.tipo() == 'Y':
             self.consumir('Y')

@@ -1,0 +1,147 @@
+[
+  {
+    "id": "V01",
+    "archivo": "ejemplos/validos/01_activar.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V02",
+    "archivo": "ejemplos/validos/02_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V03",
+    "archivo": "ejemplos/validos/03_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V04",
+    "archivo": "ejemplos/validos/04_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V05",
+    "archivo": "ejemplos/validos/05_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V06",
+    "archivo": "ejemplos/validos/06_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V07",
+    "archivo": "ejemplos/validos/07_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V08",
+    "archivo": "ejemplos/validos/08_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V09",
+    "archivo": "ejemplos/validos/09_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "V10",
+    "archivo": "ejemplos/validos/10_valido.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "I01",
+    "archivo": "ejemplos/invalidos/01_falta_then.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 19
+  },
+  {
+    "id": "I02",
+    "archivo": "ejemplos/invalidos/02_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 16
+  },
+  {
+    "id": "I03",
+    "archivo": "ejemplos/invalidos/03_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 37
+  },
+  {
+    "id": "I04",
+    "archivo": "ejemplos/invalidos/04_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 20
+  },
+  {
+    "id": "I05",
+    "archivo": "ejemplos/invalidos/05_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 36
+  },
+  {
+    "id": "I06",
+    "archivo": "ejemplos/invalidos/06_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 42
+  },
+  {
+    "id": "I07",
+    "archivo": "ejemplos/invalidos/07_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 16
+  },
+  {
+    "id": "I08",
+    "archivo": "ejemplos/invalidos/08_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 6
+  },
+  {
+    "id": "I09",
+    "archivo": "ejemplos/invalidos/09_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 31
+  },
+  {
+    "id": "I10",
+    "archivo": "ejemplos/invalidos/10_invalido.txt",
+    "esperado": "sintactico",
+    "linea": 1,
+    "columna": 39
+  },
+  {
+    "id": "L01",
+    "archivo": "ejemplos/limite/01_limite.txt",
+    "esperado": "sintactico"
+  },
+  {
+    "id": "L02",
+    "archivo": "ejemplos/limite/02_limite.txt",
+    "esperado": "valido"
+  },
+  {
+    "id": "L03",
+    "archivo": "ejemplos/limite/03_limite.txt",
+    "esperado": "lexico"
+  },
+  {
+    "id": "L04",
+    "archivo": "ejemplos/limite/04_limite.txt",
+    "esperado": "sintactico"
+  },
+  {
+    "id": "L05",
+    "archivo": "ejemplos/limite/05_limite.txt",
+    "esperado": "sintactico"
+  }
+]
