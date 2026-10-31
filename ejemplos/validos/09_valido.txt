@@ -1,0 +1,1 @@
+WHEN NOT NOT lluvia == TRUE THEN DESACTIVAR bomba;

@@ -1,0 +1,46 @@
+test_celdas_predictivas_y_ausencia_de_conflictos (test_analisis.AgricolaTests.test_celdas_predictivas_y_ausencia_de_conflictos) ... ok
+test_first_completos (test_analisis.AgricolaTests.test_first_completos) ... ok
+test_follow_completos (test_analisis.AgricolaTests.test_follow_completos) ... ok
+test_vocabulario_coincide_con_contrato (test_analisis.AgricolaTests.test_vocabulario_coincide_con_contrato) ... ok
+test_dos_alternativas_anulables (test_analisis.ConflictosTests.test_dos_alternativas_anulables) ... ok
+test_first_first_conserva_alternativas (test_analisis.ConflictosTests.test_first_first_conserva_alternativas) ... ok
+test_first_follow (test_analisis.ConflictosTests.test_first_follow) ... ok
+test_produccion_duplicada_no_es_conflicto (test_analisis.ConflictosTests.test_produccion_duplicada_no_es_conflicto) ... ok
+test_cadena_anulable (test_analisis.ConjuntosTests.test_cadena_anulable) ... ok
+test_follow_inicial_tambien_en_lado_derecho (test_analisis.ConjuntosTests.test_follow_inicial_tambien_en_lado_derecho) ... ok
+test_no_muta_gramatica_ni_conjuntos (test_analisis.ConjuntosTests.test_no_muta_gramatica_ni_conjuntos) ... ok
+test_propagacion_con_orden_inverso (test_analisis.ConjuntosTests.test_propagacion_con_orden_inverso) ... ok
+test_recursion_sin_cadena_terminal (test_analisis.ConjuntosTests.test_recursion_sin_cadena_terminal) ... ok
+test_secuencia_vacia_y_prefijo_anulable (test_analisis.ConjuntosTests.test_secuencia_vacia_y_prefijo_anulable) ... ok
+test_terminal_y_epsilon (test_analisis.ConjuntosTests.test_terminal_y_epsilon) ... ok
+test_exportacion_determinista_y_legible (test_analisis.ExportacionTests.test_exportacion_determinista_y_legible) ... ok
+test_exportacion_no_oculta_conflictos (test_analisis.ExportacionTests.test_exportacion_no_oculta_conflictos) ... ok
+test_conjuntos_incompatibles (test_analisis.ValidacionTests.test_conjuntos_incompatibles) ... ok
+test_gramaticas_invalidas (test_analisis.ValidacionTests.test_gramaticas_invalidas) ... ok
+test_inicial_inexistente (test_analisis.ValidacionTests.test_inicial_inexistente) ... ok
+test_vocabulario_detecta_errata (test_analisis.ValidacionTests.test_vocabulario_detecta_errata) ... ok
+test_cli_archivo_inexistente (test_integracion.IntegracionTests.test_cli_archivo_inexistente) ... ok
+test_cli_archivo_invalido (test_integracion.IntegracionTests.test_cli_archivo_invalido) ... ok
+test_cli_archivo_valido_y_tokens (test_integracion.IntegracionTests.test_cli_archivo_valido_y_tokens) ... ok
+test_cli_limite_de_anidamiento (test_integracion.IntegracionTests.test_cli_limite_de_anidamiento) ... ok
+test_cli_utf8_bom_y_utf8_invalido (test_integracion.IntegracionTests.test_cli_utf8_bom_y_utf8_invalido) ... ok
+test_cola_and_larga_y_asociacion (test_integracion.IntegracionTests.test_cola_and_larga_y_asociacion) ... ok
+test_cola_or_larga_y_renderizado (test_integracion.IntegracionTests.test_cola_or_larga_y_renderizado) ... ok
+test_contrato_de_tokens_invalido (test_integracion.IntegracionTests.test_contrato_de_tokens_invalido) ... ok
+test_fin_interno_no_puede_ocultar_tokens (test_integracion.IntegracionTests.test_fin_interno_no_puede_ocultar_tokens) ... ok
+test_and_tiene_mayor_precedencia_que_or (test_parser.ArbolTests.test_and_tiene_mayor_precedencia_que_or) ... ok
+test_asociacion_a_la_izquierda (test_parser.ArbolTests.test_asociacion_a_la_izquierda) ... ok
+test_ast_de_la_sentencia_5 (test_parser.ArbolTests.test_ast_de_la_sentencia_5) ... ok
+test_varias_reglas (test_parser.ArbolTests.test_varias_reglas) ... ok
+test_diez_entradas_invalidas_con_ubicacion (test_parser.InvalidasTests.test_diez_entradas_invalidas_con_ubicacion) ... ok
+test_error_en_segunda_linea (test_parser.LimiteTests.test_error_en_segunda_linea) ... ok
+test_error_lexico_con_ubicacion (test_parser.LimiteTests.test_error_lexico_con_ubicacion) ... ok
+test_programa_vacio_se_rechaza (test_parser.LimiteTests.test_programa_vacio_se_rechaza) ... ok
+test_reservadas_en_minusculas (test_parser.LimiteTests.test_reservadas_en_minusculas) ... ok
+test_texto_sobrante_tras_el_programa (test_parser.LimiteTests.test_texto_sobrante_tras_el_programa) ... ok
+test_diez_entradas_validas (test_parser.ValidasTests.test_diez_entradas_validas) ... ok
+
+----------------------------------------------------------------------
+Ran 41 tests in 0.658s
+
+OK

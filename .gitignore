@@ -4,3 +4,8 @@ __pycache__/
 .pytest_cache/
 resultados/*.json
 resultados/*.csv
+!resultados/manifest_ejecucion.json
+!resultados/pruebas_entradas.csv
+!resultados/first_follow.json
+!resultados/tabla_ll1.csv
+!resultados/conflictos.json

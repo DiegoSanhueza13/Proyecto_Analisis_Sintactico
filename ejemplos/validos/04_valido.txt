@@ -1,0 +1,1 @@
+WHEN humedad < 30 AND temperatura > 20 THEN ACTIVAR bomba;

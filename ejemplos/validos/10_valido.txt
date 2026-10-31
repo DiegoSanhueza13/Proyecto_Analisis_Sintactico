@@ -1,0 +1,1 @@
+WHEN (a < 1 OR (b > 2 AND c != 3)) THEN ACTIVAR x Y DESACTIVAR ventilador Y REGAR z POR 5 MIN;

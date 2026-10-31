@@ -1,0 +1,1 @@
+WHEN NOT (lluvia == TRUE OR humedad >= 60) THEN REGAR norte POR 10 MIN Y ACTIVAR bomba;

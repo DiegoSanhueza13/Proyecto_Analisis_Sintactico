@@ -1,0 +1,1 @@
+WHEN lluvia == FALSE THEN REGAR norte POR 15 MIN;

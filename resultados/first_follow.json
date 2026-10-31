@@ -1,0 +1,220 @@
+{
+  "inicial": "Programa",
+  "gramatica": {
+    "Accion": [
+      [
+        "ACTIVAR",
+        "ID"
+      ],
+      [
+        "DESACTIVAR",
+        "ID"
+      ],
+      [
+        "REGAR",
+        "ID",
+        "POR",
+        "NUM",
+        "MIN"
+      ]
+    ],
+    "ColaAnd": [
+      [
+        "AND",
+        "Factor",
+        "ColaAnd"
+      ],
+      []
+    ],
+    "ColaOr": [
+      [
+        "OR",
+        "Termino",
+        "ColaOr"
+      ],
+      []
+    ],
+    "Comparacion": [
+      [
+        "ID",
+        "REL",
+        "Valor"
+      ]
+    ],
+    "Expr": [
+      [
+        "Termino",
+        "ColaOr"
+      ]
+    ],
+    "Factor": [
+      [
+        "NOT",
+        "Factor"
+      ],
+      [
+        "(",
+        "Expr",
+        ")"
+      ],
+      [
+        "Comparacion"
+      ]
+    ],
+    "MasAcciones": [
+      [
+        "Y",
+        "Accion",
+        "MasAcciones"
+      ],
+      []
+    ],
+    "Programa": [
+      [
+        "Regla",
+        "Resto"
+      ]
+    ],
+    "Regla": [
+      [
+        "WHEN",
+        "Expr",
+        "THEN",
+        "Accion",
+        "MasAcciones",
+        ";"
+      ]
+    ],
+    "Resto": [
+      [
+        "Regla",
+        "Resto"
+      ],
+      []
+    ],
+    "Termino": [
+      [
+        "Factor",
+        "ColaAnd"
+      ]
+    ],
+    "Valor": [
+      [
+        "NUM"
+      ],
+      [
+        "TRUE"
+      ],
+      [
+        "FALSE"
+      ]
+    ]
+  },
+  "FIRST": {
+    "Accion": [
+      "ACTIVAR",
+      "DESACTIVAR",
+      "REGAR"
+    ],
+    "ColaAnd": [
+      "AND",
+      "ε"
+    ],
+    "ColaOr": [
+      "OR",
+      "ε"
+    ],
+    "Comparacion": [
+      "ID"
+    ],
+    "Expr": [
+      "(",
+      "ID",
+      "NOT"
+    ],
+    "Factor": [
+      "(",
+      "ID",
+      "NOT"
+    ],
+    "MasAcciones": [
+      "Y",
+      "ε"
+    ],
+    "Programa": [
+      "WHEN"
+    ],
+    "Regla": [
+      "WHEN"
+    ],
+    "Resto": [
+      "WHEN",
+      "ε"
+    ],
+    "Termino": [
+      "(",
+      "ID",
+      "NOT"
+    ],
+    "Valor": [
+      "FALSE",
+      "NUM",
+      "TRUE"
+    ]
+  },
+  "FOLLOW": {
+    "Accion": [
+      ";",
+      "Y"
+    ],
+    "ColaAnd": [
+      ")",
+      "OR",
+      "THEN"
+    ],
+    "ColaOr": [
+      ")",
+      "THEN"
+    ],
+    "Comparacion": [
+      ")",
+      "AND",
+      "OR",
+      "THEN"
+    ],
+    "Expr": [
+      ")",
+      "THEN"
+    ],
+    "Factor": [
+      ")",
+      "AND",
+      "OR",
+      "THEN"
+    ],
+    "MasAcciones": [
+      ";"
+    ],
+    "Programa": [
+      "$"
+    ],
+    "Regla": [
+      "$",
+      "WHEN"
+    ],
+    "Resto": [
+      "$"
+    ],
+    "Termino": [
+      ")",
+      "OR",
+      "THEN"
+    ],
+    "Valor": [
+      ")",
+      "AND",
+      "OR",
+      "THEN"
+    ]
+  }
+}
