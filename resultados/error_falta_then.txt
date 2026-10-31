@@ -1,0 +1,4 @@
+$ python -m src.main ejemplos/invalidos/01_falta_then.txt
+Error sintáctico [1:19]: se esperaba THEN y se encontró 'ACTIVAR'.
+
+Código de salida: 1

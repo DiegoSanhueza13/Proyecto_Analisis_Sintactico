@@ -1,0 +1,4 @@
+$ python -m src.main ejemplos/invalidos/02_invalido.txt
+Error sintáctico [1:16]: se esperaba un valor (NUM, TRUE o FALSE) después del operador < y se encontró 'THEN'.
+
+Código de salida: 1

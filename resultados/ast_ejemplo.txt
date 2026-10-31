@@ -1,0 +1,13 @@
+Programa
+└── Regla
+    ├── NOT
+    │   └── OR
+    │       ├── ==
+    │       │   ├── lluvia
+    │       │   └── TRUE
+    │       └── >=
+    │           ├── humedad
+    │           └── 60
+    └── Acciones
+        ├── REGAR norte (10 MIN)
+        └── ACTIVAR bomba

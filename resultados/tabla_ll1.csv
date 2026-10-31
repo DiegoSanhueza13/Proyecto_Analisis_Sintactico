@@ -1,0 +1,30 @@
+no_terminal,token,produccion,conflicto
+Accion,ACTIVAR,ACTIVAR ID,False
+Accion,DESACTIVAR,DESACTIVAR ID,False
+Accion,REGAR,REGAR ID POR NUM MIN,False
+ColaAnd,),ε,False
+ColaAnd,AND,AND Factor ColaAnd,False
+ColaAnd,OR,ε,False
+ColaAnd,THEN,ε,False
+ColaOr,),ε,False
+ColaOr,OR,OR Termino ColaOr,False
+ColaOr,THEN,ε,False
+Comparacion,ID,ID REL Valor,False
+Expr,(,Termino ColaOr,False
+Expr,ID,Termino ColaOr,False
+Expr,NOT,Termino ColaOr,False
+Factor,(,( Expr ),False
+Factor,ID,Comparacion,False
+Factor,NOT,NOT Factor,False
+MasAcciones,;,ε,False
+MasAcciones,Y,Y Accion MasAcciones,False
+Programa,WHEN,Regla Resto,False
+Regla,WHEN,WHEN Expr THEN Accion MasAcciones ;,False
+Resto,$,ε,False
+Resto,WHEN,Regla Resto,False
+Termino,(,Factor ColaAnd,False
+Termino,ID,Factor ColaAnd,False
+Termino,NOT,Factor ColaAnd,False
+Valor,FALSE,FALSE,False
+Valor,NUM,NUM,False
+Valor,TRUE,TRUE,False
