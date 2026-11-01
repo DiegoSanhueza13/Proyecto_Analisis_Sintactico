@@ -39,7 +39,7 @@ def verificar():
             obtenido = 'lexico' if isinstance(exc, ErrorLexico) else 'sintactico'
             mensaje, linea, columna = exc.mensaje, exc.linea, exc.columna
         # También se comprueba el programa desde un proceso nuevo, como lo usa
-        # un integrante al ejecutar los comandos del README.txt.
+        # un integrante al ejecutar los comandos del README.md.
         cli = subprocess.run([sys.executable, '-m', 'src.main', str(ruta)],
                              cwd=RAIZ, capture_output=True, encoding='utf-8', timeout=20)
         coincide = (obtenido == caso['esperado']

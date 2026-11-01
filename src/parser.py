@@ -1,10 +1,31 @@
-"""parser predictivo de descenso recursivo para la gramatica
-Una funcion por no terminal; la decicion se toma con el tipo de token actual,
-de acuerdo a la tabla ll(1) de la seccion 6.
-Las producciones ε no consumen tokens. Cada función devuelve su nodo del AST."""
+"""Parser predictivo de descenso recursivo para la gramática de src/gramatica.py.
+
+Hay una función por no terminal; la decisión se toma con el tipo del token
+actual, de acuerdo con la tabla LL(1) (sección 6 del informe).
+Las producciones ε no consumen tokens. Cada función devuelve su nodo del AST.
+"""
+from typing import NoReturn
 
 from .arbol import Nodo
 from .contratos import ErrorSintactico, Token
+
+# Descripción legible de los tipos de token para los mensajes de error.
+# Las palabras reservadas (THEN, POR, MIN, ...) se muestran tal cual.
+DESCRIPCION = {
+    'ID': 'un identificador',
+    'NUM': 'un número entero',
+    'REL': 'un comparador (>, <, >=, <=, == o !=)',
+    '(': "'('",
+    ')': "')' para cerrar el paréntesis",
+    ';': "';' al final de la regla",
+    '$': 'el fin de la entrada o una nueva regla WHEN',
+}
+
+
+def es_reservada(tok: Token) -> bool:
+    """Las reservadas usan como tipo su propia palabra en mayúsculas."""
+    return tok.tipo.isalpha() and tok.tipo == tok.lexema.upper() and tok.tipo != 'ID'
+
 
 class Parser:
     def __init__(self, tokens: list[Token]):
@@ -25,23 +46,27 @@ class Parser:
     def _encontrado(self, tok:Token) -> str:
         return 'el fin de la entrada' if tok.tipo == '$' else f"'{tok.lexema}'"
 
-    def error(self, esperado: str):
+    def error(self, esperado: str) -> NoReturn:
+        """Lanza ErrorSintactico indicando qué se esperaba, qué se encontró y dónde."""
         tok = self.actual()
-        raise ErrorSintactico(f'se esperaba {esperado} y se encontró {self._encontrado(tok)}',
-                              tok.linea, tok.columna)
+        mensaje = f'se esperaba {esperado} y se encontró {self._encontrado(tok)}'
+        if esperado == DESCRIPCION['ID'] and es_reservada(tok):
+            mensaje += f" ('{tok.lexema}' es una palabra reservada y no puede usarse como identificador)"
+        raise ErrorSintactico(mensaje, tok.linea, tok.columna)
+
     def consumir(self, esperado: str) -> Token:
         if self.tipo() != esperado:
-            self.error(esperado)
+            self.error(DESCRIPCION.get(esperado, esperado))
         tok = self.actual()
         self.pos += 1
         return tok
 
-    # punto de entrada
+    # Punto de entrada
     def analizar(self) -> Nodo:
         arbol= self.programa()
-        self.consumir('$') # si sobra algo, se informa aquí
+        self.consumir('$')  # si sobra texto tras la última regla, se informa aquí
         return arbol
-    # no terminales
+    # No terminales
     def programa(self) -> Nodo:     # Programa → Regla Resto
 
         reglas = [self.regla()]
@@ -53,7 +78,7 @@ class Parser:
         reglas = []
         while self.tipo() == 'WHEN':
             reglas.append(self.regla())
-        return reglas # ε: token en FOLLOW(Resto) = {$}
+        return reglas  # ε: token en FOLLOW(Resto) = {$}
 
     def regla(self) -> Nodo:        # Regla → WHEN Expr THEN Accion MasAcciones ;
         self.consumir('WHEN')
@@ -73,7 +98,7 @@ class Parser:
             self.consumir('OR')
             der = self.termino()
             izq = Nodo('OR', [izq, der])
-        return izq # # ε: token en {THEN, )}
+        return izq  # ε: token en FOLLOW(ColaOr) = {THEN, )}
 
     def termino(self) -> Nodo:      # Termino → Factor ColaAnd
         
@@ -85,7 +110,7 @@ class Parser:
             self.consumir('AND')
             der = self.factor()
             izq = Nodo('AND', [izq, der])
-        return izq #ε: token en {OR, THEN, )}
+        return izq  # ε: token en FOLLOW(ColaAnd) = {OR, THEN, )}
 
     def factor(self) -> Nodo:       # Factor → NOT Factor | ( Expr ) | Comparacion
         t = self.tipo()
@@ -96,7 +121,7 @@ class Parser:
             self.consumir('(')
             interno = self.expr()
             self.consumir(')')
-            return interno  #parentesis no genran nodoss
+            return interno  # los paréntesis no generan nodo en el AST
         if t == 'ID':
             return self.comparacion()
         self.error('una condición (NOT, "(" o un identificador)')
@@ -135,4 +160,4 @@ class Parser:
         while self.tipo() == 'Y':
             self.consumir('Y')
             acciones.append(self.accion())
-        return acciones # ε: token en FOLLOW(MasAcciones) = {;}
+        return acciones  # ε: token en FOLLOW(MasAcciones) = {;}

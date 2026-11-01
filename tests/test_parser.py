@@ -27,13 +27,13 @@ VALIDAS = [
 INVALIDAS = [
     ("WHEN humedad < 30 ACTIVAR bomba;", 1, 19, "se esperaba THEN"),
     ("WHEN humedad < THEN ACTIVAR bomba;", 1, 16, "un valor (NUM, TRUE o FALSE) después del operador <"),
-    ("WHEN humedad < 30 THEN ACTIVAR bomba", 1, 37, "se esperaba ;"),
-    ("WHEN (humedad < 30 THEN ACTIVAR bomba;", 1, 20, "se esperaba )"),
+    ("WHEN humedad < 30 THEN ACTIVAR bomba", 1, 37, "se esperaba ';' al final de la regla"),
+    ("WHEN (humedad < 30 THEN ACTIVAR bomba;", 1, 20, "se esperaba ')' para cerrar el paréntesis"),
     ("WHEN humedad < 30 THEN REGAR norte 10 MIN;", 1, 36, "se esperaba POR"),
     ("WHEN humedad < 30 THEN REGAR norte POR 10;", 1, 42, "se esperaba MIN"),
     ("WHEN humedad < limite THEN ACTIVAR bomba;", 1, 16, "un valor (NUM, TRUE o FALSE)"),
     ("WHEN TRUE THEN ACTIVAR bomba;", 1, 6, "una condición"),
-    ("WHEN humedad < 30 THEN ACTIVAR;", 1, 31, "se esperaba ID"),
+    ("WHEN humedad < 30 THEN ACTIVAR;", 1, 31, "se esperaba un identificador"),
     ("WHEN humedad < 30 THEN ACTIVAR bomba Y;", 1, 39, "una acción"),
 ]
  
@@ -78,7 +78,22 @@ class LimiteTests(unittest.TestCase):
     def test_texto_sobrante_tras_el_programa(self):
         with self.assertRaises(ErrorSintactico) as ctx:
             analizar("WHEN a < 1 THEN ACTIVAR b; basura")
-        self.assertIn("se esperaba $", ctx.exception.mensaje)
+        self.assertIn("se esperaba el fin de la entrada o una nueva regla WHEN", ctx.exception.mensaje)
+
+    def test_falta_comparador(self):
+        with self.assertRaises(ErrorSintactico) as ctx:
+            analizar("WHEN humedad 30 THEN ACTIVAR bomba;")
+        self.assertIn("se esperaba un comparador", ctx.exception.mensaje)
+
+    def test_reservada_usada_como_identificador(self):
+        with self.assertRaises(ErrorSintactico) as ctx:
+            analizar("WHEN a < 1 THEN ACTIVAR y;")
+        self.assertIn("'y' es una palabra reservada", ctx.exception.mensaje)
+
+    def test_duracion_no_numerica(self):
+        with self.assertRaises(ErrorSintactico) as ctx:
+            analizar("WHEN a < 1 THEN REGAR norte POR x MIN;")
+        self.assertIn("se esperaba un número entero", ctx.exception.mensaje)
  
  
 class ArbolTests(unittest.TestCase):

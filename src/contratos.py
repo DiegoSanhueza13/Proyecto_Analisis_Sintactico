@@ -11,9 +11,9 @@ Gramatica = dict[str, list[Produccion]]
 class Token:
     """Posición desde 1; tipo normalizado y lexema original.
 
-    El futuro lexer debe agregar exactamente un Token('$', '', linea, columna).
+    El lexer agrega exactamente un Token('$', '', linea, columna) al final.
     Las reservadas usan su palabra en mayúsculas como tipo; los demás tipos son
-    ID, NUM, REL, (, ) y ;. Este contrato debe acordarse al integrar el parser.
+    ID, NUM, REL, (, ) y ;. El parser valida este contrato al recibir los tokens.
     """
     tipo: str
     lexema: str
@@ -22,7 +22,7 @@ class Token:
 
 
 class ErrorLenguaje(ValueError):
-    """Error localizado de la futura integración léxica/sintáctica."""
+    """Error léxico o sintáctico con su línea y columna (desde 1)."""
     def __init__(self, mensaje: str, linea: int, columna: int):
         self.mensaje = mensaje
         self.linea = linea

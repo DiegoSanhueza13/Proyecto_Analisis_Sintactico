@@ -1,5 +1,5 @@
 {
-  "fecha_utc": "2026-10-31T16:15:07.548071+00:00",
+  "fecha_utc": "2026-11-01T04:44:18.948494+00:00",
   "casos": 25,
   "correctos": 25,
   "conflictos_ll1": 0,
@@ -32,18 +32,18 @@
     "ejemplos/validos/09_valido.txt": "76c6762e4890229bb25c20fc960da967e755326bf613634ba963f781d845cfea",
     "ejemplos/validos/10_valido.txt": "6e2bf0cd6109cded32f2d79ed52183d9cadaa469caff1b258e9b42ca4ed31cf2",
     "src/__init__.py": "330520ba1ca7cef138b85456581eb35aef563a6140f1bb057e64d1cf3eeff53b",
-    "src/agro.py": "cef2e00f2e4ba47977b3e046ecde1bea2c902afc851f8dd109729b180b66b6a9",
+    "src/agro.py": "c640b9fe0a03e1e56ffe9921cb9767e096fca5baf7602deae6660773bcaba902",
     "src/analisis_gramatica.py": "47e667f306db18b0498a9fe06e1eb9ddb3786775e3698cbcfa695593a3134bb5",
     "src/arbol.py": "4fde824b1b008fd6924202b3af83d02e9197adc48d797834473121c431b3dcfb",
-    "src/contratos.py": "ce1756931a19c70bac42293d42f7e0184393c214e790f921935b31775c3bf662",
-    "src/exportar_analisis.py": "a9322718557bf20f7af4d44e74a63786c82dbc6823222023348e974c9ffbb6ea",
-    "src/gramatica.py": "352a0703ae9f019b1cafa97c82665329472985d0acd33fb5168cab7371320959",
+    "src/contratos.py": "b963227cb48cd7b838a31bcc4ea949d1e6f008a8739e1a71d24ef17dd83440d8",
+    "src/exportar_analisis.py": "2a6ba88abca8147b7358cc9abc53529864089e33ca7429cf9371f0424a0d48e6",
+    "src/gramatica.py": "84c014e4e4395c03ed6aba518bab99563e9429989b89236d5d3dfa7dfa943caf",
     "src/main.py": "b0f5368512cf1b9cb620b686bd0e37dde32e2b586e88a278604418e8430979ff",
-    "src/parser.py": "3c22e22d55dce829e5a71722a49672840bfa11334515ef429250fc46693ffec7",
-    "src/verificar_entrega.py": "d8bfd299036398de6f243026ecb802f6482d7b6ed1495c466ede26a3dc347961",
+    "src/parser.py": "78ad70a1c1d70528a716d00d52de2d939a19fd1df7c7c35835abde98b6270380",
+    "src/verificar_entrega.py": "fa948f5a01c817712316f2e5b555119d59c488165bf6a17617594bd6f1c46ad4",
     "tests/__init__.py": "4edee6461ffdf11b26ffc0fba0c8f8a2e3d0c24a1855cd0ed4c7e26803e61c6c",
-    "tests/test_analisis.py": "f271639ca489aaa398f09e656029507b94a6010de8492326ca0c9f14451fa10a",
+    "tests/test_analisis.py": "81f617a8ba7433a5806c5d6f2554fe461a26e8cc133ce42180d28db178a2ffd1",
     "tests/test_integracion.py": "f6f76bfd2747e517c191dc7c551f423c4f296b95eb627b994ca7ee6c84965d5e",
-    "tests/test_parser.py": "dd3056e3d28bf472c86b6817febe7a1452d1f956c4e28e3b1bd5711b5fab17bb"
+    "tests/test_parser.py": "0954a5b87dc3a232f306525f6cecf62066de72f89ae97fa60649310816dcb43a"
   }
 }
