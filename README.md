@@ -14,11 +14,12 @@ Mini lenguaje de dominio específico para escribir reglas de riego y control de 
 
 1. [Requisitos](#requisitos)
 2. [Cómo ejecutarlo](#cómo-ejecutarlo)
-3. [El lenguaje](#el-lenguaje)
-4. [Cómo funciona](#cómo-funciona)
-5. [Estructura del repositorio](#estructura-del-repositorio)
-6. [Pruebas y evidencia](#pruebas-y-evidencia)
-7. [Limitaciones](#limitaciones)
+3. [Demostración](#demostración)
+4. [El lenguaje](#el-lenguaje)
+5. [Cómo funciona](#cómo-funciona)
+6. [Estructura del repositorio](#estructura-del-repositorio)
+7. [Pruebas y evidencia](#pruebas-y-evidencia)
+8. [Limitaciones](#limitaciones)
 
 ---
 
@@ -80,6 +81,58 @@ Error sintáctico [1:19]: se esperaba THEN y se encontró 'ACTIVAR'.
 **Formato de entrada:** archivo de texto UTF-8 (con o sin BOM) con una o más reglas. El programa termina con código `0` si la entrada es válida y `1` si hay un error de lectura, léxico o sintáctico. El AST se dibuja con caracteres Unicode y la salida usa UTF-8.
 
 > ⚠️ Ejecutar siempre con `python -m src.main` desde la raíz, no `python src/main.py`.
+
+## Demostración
+
+Capturas de ejecuciones reales en el equipo de un integrante. Todas están en [`resultados/capturas/`](resultados/capturas/).
+
+### Figura 1. Entrada válida V05
+
+`python -m src.main ejemplos/validos/05_valido.txt`
+
+![Figura 1. Entrada válida V05](resultados/capturas/Entrada%20v%C3%A1lida%20V05.png)
+
+El parser acepta la regla y muestra su AST: la negación agrupa la condición OR y las dos acciones quedan unidas bajo `Acciones`.
+
+### Figura 2. Entrada inválida I01 — falta THEN
+
+`python -m src.main ejemplos/invalidos/01_falta_then.txt`
+
+![Figura 2. Entrada inválida I01 — falta THEN](resultados/capturas/Entrada%20inv%C3%A1lida%20I01.png)
+
+El parser informa qué esperaba, qué encontró y la posición del error (línea 1, columna 19).
+
+### Figura 3. Entrada inválida I02 — falta un valor
+
+`python -m src.main ejemplos/invalidos/02_invalido.txt`
+
+![Figura 3. Entrada inválida I02 — falta un valor](resultados/capturas/Entrada%20inv%C3%A1lida%20I02.png)
+
+Error después del operador `<`, indicando los valores admitidos (NUM, TRUE o FALSE).
+
+### Figura 4. Tokens y AST de la entrada V01
+
+`python -m src.main ejemplos/validos/01_activar.txt --tokens`
+
+![Figura 4. Tokens y AST de la entrada V01](resultados/capturas/Entrada%20v%C3%A1lida%20V01.png)
+
+Con `--tokens` se ven las dos etapas: primero los tokens del analizador léxico (posición, tipo y lexema) y luego el AST.
+
+### Figura 5. Pruebas automáticas
+
+`python -m unittest discover -s tests`
+
+![Figura 5. Pruebas automáticas](resultados/capturas/Ejecuci%C3%B3n%20de%20las%2044%20pruebas%20autom%C3%A1ticas.png)
+
+Las 44 pruebas terminan correctamente.
+
+### Figura 6. Verificación del corpus
+
+`python -m src.verificar_entrega`
+
+![Figura 6. Verificación del corpus](resultados/capturas/Verificaci%C3%B3n%20del%20corpus.png)
+
+Las 25 entradas de ejemplo obtienen el resultado esperado y la tabla LL(1) no tiene conflictos.
 
 ## El lenguaje
 
@@ -188,7 +241,7 @@ Por separado del parser, la gramática está escrita como datos en Python y un m
 | ├ [`error_falta_then.txt`](resultados/error_falta_then.txt) | Transcripción real del error "falta THEN" |
 | ├ [`error_falta_valor.txt`](resultados/error_falta_valor.txt) | Transcripción real del error "falta valor" |
 | ├ [`manifest_ejecucion.json`](resultados/manifest_ejecucion.json) | Fecha y huellas SHA-256 de la ejecución |
-| └ [`capturas/`](resultados/capturas/) | Capturas de pantalla de la demostración |
+| └ [`capturas/`](resultados/capturas/) | 6 capturas de pantalla de la demostración (ver [Demostración](#demostración)) |
 | [`docs/`](docs/) | Informe final en PDF |
 | `.gitignore` | Excluye de Git los archivos temporales de Python (`__pycache__`, entornos virtuales) |
 
@@ -198,7 +251,7 @@ Por separado del parser, la gramática está escrita como datos en Python y un m
 - **25 entradas de ejemplo** (10 válidas, 10 inválidas y 5 límite), todas con el resultado esperado: [`pruebas_entradas.csv`](resultados/pruebas_entradas.csv).
 - **Tabla LL(1) sin conflictos:** [`conflictos.json`](resultados/conflictos.json) está vacío.
 - [`manifest_ejecucion.json`](resultados/manifest_ejecucion.json) registra la fecha UTC y las huellas SHA-256 del código y las entradas usadas (normalizando los saltos de línea, para que no dependan del sistema operativo).
-- Las transcripciones de [`resultados/`](resultados/) son texto de ejecuciones reales; las capturas de pantalla van en [`resultados/capturas/`](resultados/capturas/).
+- Las transcripciones de [`resultados/`](resultados/) son texto de ejecuciones reales; las capturas de pantalla están en [`resultados/capturas/`](resultados/capturas/) y se muestran en la sección [Demostración](#demostración).
 
 Si se cambia la gramática, el código o los ejemplos, volver a generar la evidencia con `python -m src.verificar_entrega`.
 
