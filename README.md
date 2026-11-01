@@ -6,7 +6,7 @@ Mini lenguaje de dominio específico para escribir reglas de riego y control de 
 
 **Integrantes:** Nataly Huaiquinao Sáez · Diego Sanhueza Reveco · Alvaro Valenzuela Paillacar
 
-📄 **Informe completo:** carpeta [`docs/`](docs/)
+**Informe completo (PDF):** [Proyecto_JefeGrupo_Nataly_Huaiquinao.pdf](docs/Proyecto_JefeGrupo_Nataly_Huaiquinao.pdf) — incluye la gramática, FIRST/FOLLOW, tabla LL(1), casos de prueba y capturas.
 
 ---
 
@@ -80,7 +80,7 @@ Error sintáctico [1:19]: se esperaba THEN y se encontró 'ACTIVAR'.
 
 **Formato de entrada:** archivo de texto UTF-8 (con o sin BOM) con una o más reglas. El programa termina con código `0` si la entrada es válida y `1` si hay un error de lectura, léxico o sintáctico. El AST se dibuja con caracteres Unicode y la salida usa UTF-8.
 
-> ⚠️ Ejecutar siempre con `python -m src.main` desde la raíz, no `python src/main.py`.
+>  Ejecutar siempre con `python -m src.main` desde la raíz, no `python src/main.py`.
 
 ## Demostración
 
@@ -242,7 +242,8 @@ Por separado del parser, la gramática está escrita como datos en Python y un m
 | ├ [`error_falta_valor.txt`](resultados/error_falta_valor.txt) | Transcripción real del error "falta valor" |
 | ├ [`manifest_ejecucion.json`](resultados/manifest_ejecucion.json) | Fecha y huellas SHA-256 de la ejecución |
 | └ [`capturas/`](resultados/capturas/) | 6 capturas de pantalla de la demostración (ver [Demostración](#demostración)) |
-| [`docs/`](docs/) | Informe final en PDF |
+| [`docs/`](docs/) | Informe final |
+| └ [`Proyecto_JefeGrupo_Nataly_Huaiquinao.pdf`](docs/Proyecto_JefeGrupo_Nataly_Huaiquinao.pdf) | Informe del proyecto en PDF |
 | `.gitignore` | Excluye de Git los archivos temporales de Python (`__pycache__`, entornos virtuales) |
 
 ## Pruebas y evidencia
