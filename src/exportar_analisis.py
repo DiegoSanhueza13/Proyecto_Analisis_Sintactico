@@ -2,8 +2,8 @@
 
 Genera FIRST/FOLLOW, tabla dispersa y conflictos; no construye ni ejecuta un
 parser. Código de salida 0 si no hay conflictos, 1 si la gramática no es LL(1).
-Los archivos generados quedan fuera de Git por defecto para evitar resultados
-obsoletos. Se pueden adjuntar al informe tras verificar la gramática acordada.
+Los archivos generados se versionan en resultados/; deben regenerarse si
+cambia la gramática.
 """
 import argparse
 import csv
@@ -41,7 +41,7 @@ def exportar(g, inicial, carpeta):
 
 
 def main():
-    cli = argparse.ArgumentParser(description='Exportar análisis de la gramática agrícola candidata')
+    cli = argparse.ArgumentParser(description='Exportar análisis de la gramática agrícola')
     cli.add_argument('--salida', type=Path, default=Path('resultados'))
     args = cli.parse_args()
     validar_gramatica(GRAMATICA, INICIAL, TERMINALES)

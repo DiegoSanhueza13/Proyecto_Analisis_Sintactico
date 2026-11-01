@@ -1,4 +1,4 @@
-"""Oráculos pequeños resueltos a mano y resultados de la gramática candidata."""
+"""Oráculos pequeños resueltos a mano y resultados de la gramática del proyecto."""
 import copy
 import csv
 import json

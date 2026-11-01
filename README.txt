@@ -1,7 +1,7 @@
 PROYECTO DE ANÁLISIS SINTÁCTICO — AUTOMATIZACIÓN AGRÍCOLA
 
-Lenguaje académico de reglas de sensores y acciones. El proyecto no tiene un
-nombre propio acordado. Valida sintaxis y construye un AST; no opera equipos.
+Lenguaje académico de reglas de sensores y acciones para riego y control de
+dispositivos. Valida sintaxis y construye un AST; no opera equipos.
 
 REQUISITOS Y EJECUCIÓN
 
@@ -39,7 +39,7 @@ LENGUAJE
 ESTRUCTURA Y APORTES
 
 src/contratos.py          Token, constantes y errores compartidos.
-src/gramatica.py          Definición central de la gramática candidata.
+src/gramatica.py          Definición central de la gramática (sección 3.2).
 src/analisis_gramatica.py FIRST, FOLLOW, tabla LL(1) y conflictos.
 src/exportar_analisis.py  Exportación formal a JSON y CSV.
 src/agro.py              Lexer adaptado de la base del docente.
@@ -50,7 +50,7 @@ src/verificar_entrega.py Corpus ejecutado por API y por CLI; exporta evidencia.
 tests/                   Pruebas formales, parser, AST e integración.
 ejemplos/                10 válidas, 10 inválidas y 5 límite, con manifiesto.
 resultados/              Resultados reproducibles y carpeta de capturas.
-docs/                    Espacio reservado para la documentación final del grupo.
+docs/                    Informe final del proyecto en PDF.
 
 La base del módulo formal está en c0ce1c5 (Álvaro Valenzuela).
 Lexer, parser, AST, CLI y pruebas de entradas proceden de c18d9bf (DiegoSanhueza13).
@@ -73,6 +73,5 @@ Las cadenas largas de AND/OR y el dibujo del árbol usan iteración; la anidaci�
 de paréntesis y NOT sigue sujeta al límite de recursión de Python. El CLI informa
 si ese límite se excede. Se detiene en el primer error y no recupera varios.
 
-El informe de Google Docs es independiente: esta integración no lo modifica.
-Antes de la entrega, el grupo debe completar sus pendientes y verificar que
-describa los archivos y comandos reales de este repositorio.
+El informe completo (gramática, FIRST/FOLLOW, tabla LL(1), pruebas y capturas)
+se encuentra en docs/.

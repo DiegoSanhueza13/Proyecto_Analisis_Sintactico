@@ -12,18 +12,18 @@ V09,ejemplos/validos/09_valido.txt,WHEN NOT NOT lluvia == TRUE THEN DESACTIVAR b
 V10,ejemplos/validos/10_valido.txt,WHEN (a < 1 OR (b > 2 AND c != 3)) THEN ACTIVAR x Y DESACTIVAR ventilador Y REGAR z POR 5 MIN;,valido,valido,True,,,Programa válido.,0
 I01,ejemplos/invalidos/01_falta_then.txt,WHEN humedad < 30 ACTIVAR bomba;,sintactico,sintactico,True,1,19,se esperaba THEN y se encontró 'ACTIVAR',1
 I02,ejemplos/invalidos/02_invalido.txt,WHEN humedad < THEN ACTIVAR bomba;,sintactico,sintactico,True,1,16,"se esperaba un valor (NUM, TRUE o FALSE) después del operador < y se encontró 'THEN'",1
-I03,ejemplos/invalidos/03_invalido.txt,WHEN humedad < 30 THEN ACTIVAR bomba,sintactico,sintactico,True,1,37,se esperaba ; y se encontró el fin de la entrada,1
-I04,ejemplos/invalidos/04_invalido.txt,WHEN (humedad < 30 THEN ACTIVAR bomba;,sintactico,sintactico,True,1,20,se esperaba ) y se encontró 'THEN',1
+I03,ejemplos/invalidos/03_invalido.txt,WHEN humedad < 30 THEN ACTIVAR bomba,sintactico,sintactico,True,1,37,se esperaba ';' al final de la regla y se encontró el fin de la entrada,1
+I04,ejemplos/invalidos/04_invalido.txt,WHEN (humedad < 30 THEN ACTIVAR bomba;,sintactico,sintactico,True,1,20,se esperaba ')' para cerrar el paréntesis y se encontró 'THEN',1
 I05,ejemplos/invalidos/05_invalido.txt,WHEN humedad < 30 THEN REGAR norte 10 MIN;,sintactico,sintactico,True,1,36,se esperaba POR y se encontró '10',1
 I06,ejemplos/invalidos/06_invalido.txt,WHEN humedad < 30 THEN REGAR norte POR 10;,sintactico,sintactico,True,1,42,se esperaba MIN y se encontró ';',1
 I07,ejemplos/invalidos/07_invalido.txt,WHEN humedad < limite THEN ACTIVAR bomba;,sintactico,sintactico,True,1,16,"se esperaba un valor (NUM, TRUE o FALSE) después del operador < y se encontró 'limite'",1
 I08,ejemplos/invalidos/08_invalido.txt,WHEN TRUE THEN ACTIVAR bomba;,sintactico,sintactico,True,1,6,"se esperaba una condición (NOT, ""("" o un identificador) y se encontró 'TRUE'",1
-I09,ejemplos/invalidos/09_invalido.txt,WHEN humedad < 30 THEN ACTIVAR;,sintactico,sintactico,True,1,31,se esperaba ID y se encontró ';',1
+I09,ejemplos/invalidos/09_invalido.txt,WHEN humedad < 30 THEN ACTIVAR;,sintactico,sintactico,True,1,31,se esperaba un identificador y se encontró ';',1
 I10,ejemplos/invalidos/10_invalido.txt,WHEN humedad < 30 THEN ACTIVAR bomba Y;,sintactico,sintactico,True,1,39,"se esperaba una acción (ACTIVAR, DESACTIVAR o REGAR) y se encontró ';'",1
 L01,ejemplos/limite/01_limite.txt,,sintactico,sintactico,True,1,1,se esperaba WHEN y se encontró el fin de la entrada,1
 L02,ejemplos/limite/02_limite.txt,when humedad < 30 then activar bomba;,valido,valido,True,,,Programa válido.,0
 L03,ejemplos/limite/03_limite.txt,"WHEN humedad < 30 THEN ACTIVAR bomba;
-WHEN a @ 3 THEN ACTIVAR b;",lexico,lexico,True,2,8,simbolo no reconocido:'@',1
+WHEN a @ 3 THEN ACTIVAR b;",lexico,lexico,True,2,8,símbolo no reconocido: '@',1
 L04,ejemplos/limite/04_limite.txt,"WHEN a < 1 THEN ACTIVAR b;
 WHEN a < 1 ACTIVAR b;",sintactico,sintactico,True,2,12,se esperaba THEN y se encontró 'ACTIVAR',1
-L05,ejemplos/limite/05_limite.txt,WHEN a < 1 THEN ACTIVAR b; basura,sintactico,sintactico,True,1,28,se esperaba $ y se encontró 'basura',1
+L05,ejemplos/limite/05_limite.txt,WHEN a < 1 THEN ACTIVAR b; basura,sintactico,sintactico,True,1,28,se esperaba el fin de la entrada o una nueva regla WHEN y se encontró 'basura',1
